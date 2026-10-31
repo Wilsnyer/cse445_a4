@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
+    <!--
+    This error is the incorrect root element name
+    -->
 <NationalPark
     xmlns="http://venus.sod.asu.edu/WSRepository/xml"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
+    <!--
+    This error lacks the required address
+    -->
     <NationalPark Rating="4.9">
         <Name>Grand Canyon National Park</Name>
         <Phone>928-638-7888</Phone>
@@ -16,6 +22,9 @@
         </Address>
     </NationalPark>
 
+    <!--
+    This error lacks any phone numbers
+    -->
     <NationalPark Rating="4.9">
         <Name>Yellowstone National Park</Name>
         <Address NearestAirport="Jackson Hole Airport">
@@ -27,6 +36,9 @@
         </Address>
     </NationalPark>
 
+    <!--
+    This error lacks a closing tag for the address
+    -->
     <NationalPark Rating="4.8">
         <Name>Yosemite National Park</Name>
         <Phone>209-372-0200</Phone>
@@ -40,6 +52,9 @@
             <Zip>95389</Zip>
     </NationalPark>
 
+    <!--
+    This error has 2 names for the national park
+    -->
     <NationalPark>
         <Name>Zion National Park</Name>
         <Name>Zion National Park 2</Name>
