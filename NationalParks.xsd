@@ -1,31 +1,55 @@
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://venus.sod.asu.edu/WSRepository/xml" elementFormDefault="qualified" attributeFormDefault="unqualified">
-    <xsd:annotation>
-        <xsd:documentation xml:lang="en">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://venus.sod.asu.edu/WSRepository/xml" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:annotation>
+        <xs:documentation xml:lang="en">
             Distributed Software Development Assignment 4 National Parks
-        </xsd:documentation>
-    </xsd:annotation>
-    <xsd:element name="NationalParks" type="NationalParksType"/>
-    <xsd:complexType name="NationalParksType">
-        <xsd:sequence>
-            <xsd:element name="NationalPark" type="NationalParkDetails" minOccurs="1" maxOccurs="unbounded"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:complexType name="NationalParkDetails">
-        <xsd:sequence>
-            <xsd:element name="Name" type="xsd:string" minOccurs="1" maxOccurs="1"/>
-            <xsd:element name="Phone" type="xsd:string" minOccurs="1" maxOccurs="3"/>
-            <xsd:element name="Address" type="AddressDetails" minOccurs="1" maxOccurs="1"/>
-        </xsd:sequence>
-        <xsd:attribute name="Rating" type="xsd:string" use="optional"/>
-    </xsd:complexType>
-    <xsd:complexType name="AddressDetails">
-        <xsd:sequence>
-            <xsd:element name="Number" type="xsd:string" minOccurs="1" maxOccurs="1"/>
-            <xsd:element name="Street" type="xsd:string" minOccurs="1" maxOccurs="1"/>
-            <xsd:element name="City" type="xsd:string" minOccurs="1" maxOccurs="1"/>
-            <xsd:element name="State" type="xsd:string" minOccurs="1" maxOccurs="1"/>
-            <xsd:element name="Zip" type="xsd:string" minOccurs="1" maxOccurs="1"/>
-        </xsd:sequence>
-        <xsd:attribute name="NearestAirport" type="xsd:string" use="required"/>
-    </xsd:complexType>
-</xsd:schema>
+        </xs:documentation>
+    </xs:annotation>
+    <xs:element name="NationalParks" type="NationalParksType"/>
+    <xs:complexType name="NationalParksType">
+        <xs:sequence>
+            <xs:element name="NationalPark" type="NationalParkDetails" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="NationalParkDetails">
+        <xs:sequence>
+            <xs:element name="Name" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="Phone" type="PhoneType" minOccurs="1" maxOccurs="unbounded"/>
+            <xs:element name="Address" type="AddressDetails" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attribute name="Rating" type="RatingType" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="AddressDetails">
+        <xs:sequence>
+            <xs:element name="Number" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="Street" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="City" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="State" type="StateType" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="Zip" type="ZipType" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attribute name="NearestAirport" type="xs:string" use="required"/>
+    </xs:complexType>
+    <!--
+    Define the allowed format for the Phone number, Rating, Zip, and State
+    -->
+    <xs:simpleType name="PhoneType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\d{3}\-\d{3}-\d{4}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="RatingType">
+        <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="1.0"/>
+            <xs:maxInclusive value="5.0"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ZipType">
+        <xs:restriction base="xs:integer">
+            <xs:totalDigits value="5"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="StateType">
+        <xs:restriction base="xs:string">
+            <xs:length value="2"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
