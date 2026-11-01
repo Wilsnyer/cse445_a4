@@ -31,11 +31,6 @@
     <!--
     Define the allowed format for the Phone number, Rating, Zip, and State
     -->
-    <xsd:simpleType name="PhoneType">
-        <xsd:restriction base="xsd:string">
-            <xsd:pattern value="\d{3}\-\d{3}-\d{4}"/>
-        </xsd:restriction>
-    </xsd:simpleType>
     <xsd:simpleType name="RatingType">
         <xsd:restriction base="xsd:decimal">
             <xsd:minInclusive value="1.0"/>
