@@ -4,7 +4,7 @@
             Distributed Software Development Assignment 4 National Parks
         </xsd:documentation>
     </xsd:annotation>
-    <xsd:element name="NationalParks" type="NationalParksType"/>
+    <xsd:element name="NationalParks" type="NationalParksType" minOccurs="1" maxOccurs="1"/>
     <xsd:complexType name="NationalParksType">
         <xsd:sequence>
             <xsd:element name="NationalPark" type="NationalParkDetails" minOccurs="1" maxOccurs="unbounded"/>
